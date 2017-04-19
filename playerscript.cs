@@ -19,18 +19,21 @@ public class playerscript : MonoBehaviour {
 		//setting animator variables
 		myAnimator.SetBool ("melee", melee);
 		myAnimator.SetBool ("block", block);
-
+		//if you press LMB or Left CTRL
 		if (Input.GetAxis ("Fire1") != 0) {
-			melee = true;
+			melee = true; // the boolean melee will be true
 		}
+		// if you release LMB or Left Ctrl
 		if (Input.GetAxis ("Fire1") == 0) {
-			melee = false;
+			melee = false; // the boolean melee will turn false again.
 		}
+		//if you press RMB
 		if (Input.GetAxis ("Fire2") != 0) {
-			block = true;
+			block = true; // boolean block will be true
 		}
+		// if you release RMB
 		if (Input.GetAxis ("Fire2") == 0) {
-			block = false;
+			block = false; // boolean block will be false
 		}
 
 	}
