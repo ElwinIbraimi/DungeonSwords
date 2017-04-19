@@ -12,7 +12,8 @@ public class respawn : MonoBehaviour {
 	void Start () {
 		// call the animator
 		myAnimator = GetComponent<Animator>();
-
+		
+		// make the variables the current position of the object this script is on
 		startPos = transform.position;
 		startRot = transform.rotation;
 
@@ -23,7 +24,7 @@ public class respawn : MonoBehaviour {
 	}
 
 	IEnumerator wait(){
-		print ("BOI FIX YO SHIT");
+		//make it so you dont respawn before 3 seconds are over so the death animation can play
 		yield return new WaitForSeconds (3f);
 		transform.position = startPos ;
 		transform.rotation = startRot;
@@ -31,11 +32,13 @@ public class respawn : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col){
+		// if you die / if you collide with the tag death
 		if (col.tag == "death") {
 			//setting animator variables
 			myAnimator.SetBool ("die", true);
-			StartCoroutine (wait ());
-			GetComponent<Rigidbody> ().velocity = new Vector3 (0f, 0f, 0f);
+			StartCoroutine (wait ()); // use the function i made above this void
+			// respawn the player in the right place
+			GetComponent<Rigidbody> ().velocity = new Vector3 (0f, 0f, 0f); 
 			GetComponent<Rigidbody> ().angularVelocity = new Vector3 (0f, 0f, 0f);
 
 		}
